@@ -1,0 +1,93 @@
+
+a {
+    color: white;
+}
+
+input {
+    padding-left: 10px;
+}
+
+.input {
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+}
+
+
+.input-container {
+    background-color: rgb(122, 122, 122);
+    height: 700px;
+    width: 500px;
+    margin: 0 auto;
+    border-radius: 50px;
+    margin-top: 20px;
+}
+
+.input-style {
+    display: flex;
+    flex-direction: column;
+    margin: 0px 50px 0px 50px;
+    padding-top: 100px;
+    gap: 30px;
+}
+
+.input-box {
+    display: flex;
+}
+
+.input-box input {
+    border: none;
+    border-radius: 10px;
+    height: 30px;
+    width: 300px;
+}
+
+.input-box a {
+    flex-grow: 1;
+    font-size: 17px;
+}
+
+.input-checkbox {
+    padding: 10px 10px 10px 0px;
+    
+}
+
+.input-checkbox a {
+    font-size: 17px;
+}
+
+.input-checkbox input {
+    margin-left: 20px;
+}
+
+.button-style {
+    display: flex;
+    justify-content: right;
+}
+
+.button-style button {
+    height: 25px;
+    width: 80px;
+    border-radius: 10px;
+    border: none;
+    color: white;
+    font-size: 17px;
+    display: flex; 
+    justify-content: center; 
+    cursor: pointer;
+    margin-right: 10px;
+    color: black;
+    font-weight: 500;
+}
+
+.button-cancel:hover {
+    background-color: rgb(170, 22, 22);
+    color: white;
+    transition: 0.2s;
+}
+
+.button-confirm:hover {
+    background-color: rgb(180, 56, 187);
+    color: white;
+    transition: 0.2s;
+}
