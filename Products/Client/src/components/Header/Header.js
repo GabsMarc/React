@@ -17,8 +17,9 @@ export default function Header(props) {
                 </div>
                 <div className='header-options'>
                     <ul>
-                        <Link to='/Register' className='Logo'><li>Cadastro</li></Link>
-                        <li>Seus Itens</li>
+                        <Link to='/Register' className='Logo' ><li>Cadastro</li></Link>
+                        <Link to='/Product' className='Logo' ><li>Seus Itens</li></Link>
+                        
                     </ul>
                 </div>
             </div>
