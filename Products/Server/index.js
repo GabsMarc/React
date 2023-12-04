@@ -14,7 +14,15 @@ const db = mysql.createPool({
 })
 
 
+app.get('/getProduct', (req, res) => {
 
+    let SQL = `SELECT * FROM items`
+
+    db.query(SQL, (err, result) => {
+        if (err) console.log(err)
+        else res.send(result)
+    })
+})
 
 
 

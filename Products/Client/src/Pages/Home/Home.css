@@ -1,16 +1,12 @@
 
-body {
-  overflow: hidden;
-}
 
 .App {
-  background-color: rgb(196, 196, 196);
   height: 1000px;
 }
 
 .primary-infos {
-  display: flex;
-  flex-direction: column;
+  /* display: flex;
+  flex-direction: column; */
   margin-top: 200px;
   margin-left: 100px;
 }
@@ -53,35 +49,17 @@ div#secondary > a#about {
   font-weight: 700;
 }
 
-.image {
+.image-container {
   display: flex;
   flex-direction: row;
   gap: 30px;
-  padding-top: 30px;
+  width: 700px;
 }
 
-.node {
+.image-container > img{
   width: 100px;
   height: 100px;
-  background-image: url(../../image/NODE.png);
-  background-size: 100%;
-  background-repeat: no-repeat
+  margin-top: 30px;
   
 }
 
-.sql {
-  width: 100px;
-  height: 100px;
-  background-image: url(../../image/MySQL.png);
-  background-size: 100%;
-  background-repeat: no-repeat
-  
-}
-
-.react {
-  width: 100px;
-  height: 100px;
-  background-image: url(../../image/React.png);
-  background-size: 100%;
-  background-repeat: no-repeat;
-}

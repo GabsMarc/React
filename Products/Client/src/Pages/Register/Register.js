@@ -2,6 +2,7 @@ import React from "react";
 import './Register.css'
 import Header from "../../components/Header/Header";
 import Input from "../../components/Input/Input";
+import Footer from '../../components/Footer/Footer'
 
 
 export default function Register() {
@@ -17,6 +18,7 @@ export default function Register() {
                     <Input />
                 </div>
             </body>
+            <Footer />
         </div>
     )
 }

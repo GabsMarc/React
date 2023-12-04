@@ -1,6 +1,10 @@
 import React from 'react'
 import './Home.css'
 import Header from '../../components/Header/Header'
+import Footer from '../../components/Footer/Footer';
+import imgNode from '../../image/NODE.png'
+import imgSQL from '../../image/MySQL.png'
+import imgReact from '../../image/React.png'
 
 export default function App() {
   return (
@@ -13,10 +17,10 @@ export default function App() {
           <div id='primary'>
             <a>Projeto CRUD</a>
           </div>
-          <div className='image'>
-            <div className='node'/>
-            <div className='sql'/>
-            <div className='react'/>
+          <div className='image-container'>
+            <img src={imgNode} />
+            <img src={imgSQL} />
+            <img src={imgReact} />
           </div>
         </div>
 
@@ -29,6 +33,7 @@ export default function App() {
         </div>
 
       </body>
+      <Footer />
 
     </div>
   );

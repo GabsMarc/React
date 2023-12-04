@@ -1,13 +1,17 @@
 
 
+
 .container-product {
-    background-color: rgb(196, 196, 196);
-    height: 1000px;
+    height: 100%;
 }
 
 .product-area {
-    background-color: aquamarine;
-    /* margin: auto; */
+    margin: auto;
     width: 90%;
-    height: 100px;
+    height: 90%;
+    margin-top: 100px;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    
 }
