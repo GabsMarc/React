@@ -1,44 +1,78 @@
 
-.header-component{
-    height: 70px;
-    width: 100%;
-    margin: auto;
+
+.header-component {
     background-color: blueviolet;
     display: flex;
-    flex-direction: row;
-    box-shadow: 0px 2px  rgb(180, 56, 187);
-    color: white;
-
+    justify-content: space-between;
 }
 
-
-.header-logo {
-    padding: 10px;
-    padding-left: 50px;
-    color: rgb(180, 56, 187);
-    flex-grow: 2;
+.nav-options {
+    margin-right: 30px;
 }
 
-
-.Logo {
-    padding-right: 10px;
-    color: white;
-    text-decoration: none;
+.nav-options > ul, li, a{
+    display: inline-block;
+    padding: 7px;
 }
 
-.header-options{ 
-    align-self: center;
-}
-
-.header-options ul, li{
+.logo {
     display: flex;
-    flex-direction: row;
-    margin-right: 10px;
-    font-size: 17px;
+    align-items: center;
+    padding-bottom: 6px;
+    padding-left: 20px;
 }
 
-.header-options li:hover {
-    color: rgb(180, 56, 187);
+.logo > a{
+    font-size: 35px;
+    font-weight: 600;
+    cursor: pointer;
+}
+
+
+.dropdown-menu {
+    position: absolute;
+    display: none;
+    border-radius: 10px;
+    box-shadow: 0px 0px 5px 0px;
+    background-color: rgb(255, 255, 255);
+    width: 145px;
+    text-align: center;
+}
+
+.dropdown-menu a:hover {
+    background-color: rgb(146, 119, 156);
+    color: white;
     transition: 0.5s;
     cursor: pointer;
 }
+
+.dropdown  a#title:hover {
+    color: rgb(180, 56, 187);
+    transition: 0.3s;
+}
+
+.dropdown-menu a{
+    display: block;
+    color: black;
+    border-radius: 9px;
+}
+
+.dropdown:hover .dropdown-menu{
+    display: block;
+}
+
+.dropdown a#title {
+    margin-left: 33px;
+    cursor: default;
+}
+
+.options {
+    color: white;
+}
+
+.options:hover {
+    color: rgb(180, 56, 187);
+    transition: 0.3s;
+}
+
+

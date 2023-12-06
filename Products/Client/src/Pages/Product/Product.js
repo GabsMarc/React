@@ -6,23 +6,22 @@ import Footer from '../../components/Footer/Footer.js'
 import Axios from 'axios'
 
 export default function Product() {
-    const [listProducts, setListProducts] = useState({})
+    const [listProducts, setListProducts] = useState()
 
-    
+
     useEffect(() => {
-        Axios.get('http://localhost:3001/getProduct').then((response)  => {
+        Axios.get('http://localhost:3001/getProduct').then((response) => {
             setListProducts(response.data)
-          })
+        })
 
     }, [listProducts])
 
-    console.log(listProducts)
 
     return (
         <div className='container-product'>
             <Header />
             <div className='product-area'>
-                {typeof listProducts != 'undefined' && 
+                {typeof listProducts != 'undefined' &&
                     listProducts.map((value) => {
 
                         return (
@@ -33,11 +32,10 @@ export default function Product() {
                                 value={value.value}
                                 active={value.active}
                                 image={value.image}
-
                             />
                         )
-
                     })}
+
             </div>
 
             <Footer />

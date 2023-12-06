@@ -1,6 +1,6 @@
 const express = require('express')
 const app = express()
-const mysql = require ('mysql')
+const mysql = require('mysql')
 const cors = require('cors')
 
 app.use(cors())
@@ -24,6 +24,28 @@ app.get('/getProduct', (req, res) => {
     })
 })
 
+app.post('/register', (req, res) => {
+    let name = req.body.name
+    let category = req.body.category
+    let value = req.body.value
+    let active = req.body.active
+
+    if (active === 'on') {
+        active = 1
+    } else {
+        
+    }
+
+
+    let SQL = `INSERT INTO items ( name, category, value, active ) 
+               VALUES ( ?, ?, ?, ? )`
+
+    console.log(name)
+
+    db.query(SQL, [name, category, value, active], (err, result) => {
+        console.log(err), console.log('Novo registro inserido com sucesso!')
+    })
+})
 
 
 

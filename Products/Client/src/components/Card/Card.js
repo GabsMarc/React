@@ -14,7 +14,7 @@ export default function Card(props) {
                     <div className="card-infos">
                         <a id="category">{props.category}</a>
                         <div className="div-title">
-                            <a id="title">{props.title}</a>
+                            <a id="title">{props.name}</a>
                         </div>
                         <div className="value">
                             <a id="value">R${props.value}</a>

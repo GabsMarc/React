@@ -10,14 +10,14 @@ export default function Register() {
     return (
         <div className="Register-Page">
             <Header />
-            <body>
+            <div>
                 <div className="title">
                     <h2>Cadastro de Produtos</h2>
                 </div>
                 <div>
                     <Input />
                 </div>
-            </body>
+            </div>
             <Footer />
         </div>
     )

@@ -6,23 +6,29 @@ import { Link } from 'react-router-dom';
 
 export default function Header(props) {
 
-    
+
     return (
         <>
             <div className='header-component'>
-                <div className='header-logo' >
-                    <div style={{width: 10}}>
-                        <Link to='/' className='Logo'><h1>GabsMarc</h1></Link>
-                    </div>
+                <div className='logo'>
+                    <Link to='/'><li>GabsMarc</li></Link>
                 </div>
-                <div className='header-options'>
+                <div className='nav-options'>
                     <ul>
-                        <Link to='/Register' className='Logo' ><li>Cadastro</li></Link>
-                        <Link to='/Product' className='Logo' ><li>Seus Itens</li></Link>
-                        
+                        <li>
+                            <Link to='/Register' className='options' ><li>Cadastro</li></Link>
+                        </li>
+                        <li className='dropdown'>
+                            <a id='title'>Produtos</a>
+                            <div className='dropdown-menu'>
+                                <Link to='/Product' className='options' ><li>Seus Produtos</li></Link>
+                                <Link to='/Product' className='options' ><li>Alterar Produtos</li></Link>
+                            </div>
+                        </li>
                     </ul>
                 </div>
             </div>
+
         </>
     )
 }

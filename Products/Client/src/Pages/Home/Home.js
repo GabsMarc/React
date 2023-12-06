@@ -11,7 +11,7 @@ export default function App() {
     <div className="App">
       <Header />
 
-      <body>
+      <div className='container'>
 
         <div className='primary-infos'>
           <div id='primary'>
@@ -32,7 +32,7 @@ export default function App() {
           </div>
         </div>
 
-      </body>
+      </div>
       <Footer />
 
     </div>
