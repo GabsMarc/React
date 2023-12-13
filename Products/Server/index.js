@@ -28,26 +28,52 @@ app.post('/register', (req, res) => {
     let name = req.body.name
     let category = req.body.category
     let value = req.body.value
-    let active = req.body.active
-
-    if (active === 'on') {
-        active = 1
-    } else {
-        
-    }
 
 
-    let SQL = `INSERT INTO items ( name, category, value, active ) 
-               VALUES ( ?, ?, ?, ? )`
+    let SQL = `INSERT INTO items ( name, category, value ) 
+               VALUES ( ?, ?, ? )`
 
-    console.log(name)
 
-    db.query(SQL, [name, category, value, active], (err, result) => {
-        console.log(err), console.log('Novo registro inserido com sucesso!')
+    db.query(SQL, [name, category, value], (err, result) => {
+        if (err) console.log(err)
+        else res.send(result), console.log('Novo registro inserido com sucesso!')
     })
 })
 
+app.delete('/delete/:id', (req, res) => {
+    const { id } = req.params
+    let SQL = `DELETE 
+               FROM items
+               WHERE id = ? `
 
+    db.query(SQL, [id], (err, result) => {
+        if (err) console.log(err)
+        else res.send(result), console.log('Deletado com sucesso!')
+    })
+})
+
+app.put('/edit', (req, res) => {
+    const { id } = req.body
+    const { name } = req.body
+    const { value } = req.body
+    const { category } = req.body
+
+    console.log(name)
+
+    let SQL = `UPDATE items 
+               set name = ?,
+               value = ?,
+               category = ?
+               WHERE id = ?
+               `
+
+
+    db.query(SQL, [name, value, category, id], (err, result) => {
+        if (err) console.log(err)
+        else res.send(result), console.log('Atualizado com sucesso!')
+    })
+
+})
 
 
 

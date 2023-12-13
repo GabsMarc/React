@@ -8,27 +8,25 @@ import imgReact from '../../image/React.png'
 
 export default function App() {
   return (
-    <div className="App">
+    <div className="app">
       <Header />
 
-      <div className='container'>
-
-        <div className='primary-infos'>
-          <div id='primary'>
-            <a>Projeto CRUD</a>
-          </div>
+      <div className='app-container'>
+        <div className='primary-container'>
           <div className='image-container'>
-            <img src={imgNode} />
-            <img src={imgSQL} />
-            <img src={imgReact} />
+            <div className='img-node'>
+              <img id='node' src={imgNode} />
+            </div>
+            <div className='img-sql'>
+              <img id='sql' src={imgSQL} />
+            </div>
+            <div className='img-react'>
+              <img id='react' src={imgReact} />
+            </div>
           </div>
         </div>
-
-        <div className='box-infos'>
-          <div id='secondary'>
-            <a id='title'>Projeto</a>
-            <a id='about'>Cadastro de produtos</a>
-            <a>Projeto criado para o estudo do React em conjunto do NODE.js</a>
+        <div className='secondary-container'>
+          <div className='secondary-infos'>
           </div>
         </div>
 

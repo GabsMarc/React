@@ -1,0 +1,19 @@
+
+
+
+
+.button-delete {
+    border: 1px solid red;
+    width: 70px;
+    text-align: center;
+    cursor: pointer;
+    border-radius: 10px;
+}
+
+.button-delete:hover{
+    background-color: rgb(212, 82, 82);
+}
+
+
+
+

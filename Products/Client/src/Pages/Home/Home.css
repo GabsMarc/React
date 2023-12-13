@@ -1,67 +1,94 @@
+.app {
+  overflow: hidden;
+}
 
+.app-container {
+  display: flex;
+  background-color: rgb(150, 150, 150);
+}
 
-.App {
+.primary-container {
+  width: 700px;
+  min-width: 400px;
+}
+
+.secondary-container {
+  width: 2000px;
+  min-width: 800px;
+  margin-left: 500px;
   height: 1000px;
+  background-color: rgb(255, 255, 255);
+  -webkit-transform: skew(-10deg);
+  -ms-transform: skew(-10deg);
+  transform: skew(-10deg);
+  box-shadow: 0px 0px 20px blueviolet;
+  margin: 15px;
 }
 
-.container {
-  display: flex;
-  flex-direction: column;
-  height: 800px;
-}
-
-.primary-infos {
-  margin-top: 200px;
-  margin-left: 100px;
-}
-
-.primary-infos > div > a {
-  font-size: 60px;
-  color: rgb(0, 0, 0);
-}
-
-div#primary {
-  margin-right: 100px;
-}
-div#secondary {
-  display: flex;
-  flex-direction: column;
-}
-
-div#secondary > a{
-  color: white;
-  font-size: 26px;
-}
-
-.box-infos {
-  background-color: blueviolet;
-  height: 200px;
-  width: 500px;
-  border-radius: 15px;
-  margin: 100px;
-  padding-left: 10px;
-}
-
-div#secondary > a#title {
-  font-size: 40px;
-}
-
-div#secondary > a#about {
-  color: black;
-  font-weight: 700;
+.secondary-infos {
+  -webkit-transform: skew(10deg);
+  -ms-transform: skew(10deg);
+  transform: skew(10deg);
 }
 
 .image-container {
   display: flex;
   flex-direction: row;
   gap: 30px;
-  width: 700px;
+  width: 100%;
+  height: 300px;
+  /* background-color: aqua; */
 }
 
-.image-container > img{
+
+.img-node {
+  background-color: blueviolet;
+  height: 180px;
+  width: 180px;
+  border-radius: 100%;
+  position: absolute;
+  left: 30px;
+  top: 100px;
+  text-align: center;
+}
+
+.img-sql {
+  background-color: blueviolet;
+  height: 120px;
+  width: 120px;
+  border-radius: 100%;
+  position: absolute;
+  left: 300px;
+  top: 200px;
+  text-align: center;
+}
+
+.img-react {
+  background-color: blueviolet;
+  height: 130px;
+  width: 130px;
+  border-radius: 100%;
+  position: absolute;
+  left: 160px;
+  top: 300px;
+  text-align: center;
+}
+
+
+img#node {
+  width: 150px;
+  height: 150px;
+  padding-top: 15px;
+}
+
+img#sql {
   width: 100px;
   height: 100px;
-  margin-top: 30px;
-  
+  padding-top: 10px;
 }
 
+img#react {
+  width: 120px;
+  height: 120px;
+  padding-top: 5px;
+}

@@ -22,7 +22,7 @@ export default function Header(props) {
                             <a id='title'>Produtos</a>
                             <div className='dropdown-menu'>
                                 <Link to='/Product' className='options' ><li>Seus Produtos</li></Link>
-                                <Link to='/Product' className='options' ><li>Alterar Produtos</li></Link>
+                                <Link to='/ProductList' className='options' ><li>Alterar Produtos</li></Link>
                             </div>
                         </li>
                     </ul>
