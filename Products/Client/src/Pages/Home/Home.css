@@ -4,6 +4,7 @@
 
 .app-container {
   display: flex;
+  height: 1000px;
   background-color: rgb(150, 150, 150);
 }
 
@@ -14,15 +15,16 @@
 
 .secondary-container {
   width: 2000px;
+  height: 700px;
   min-width: 800px;
   margin-left: 500px;
-  height: 1000px;
-  background-color: rgb(255, 255, 255);
+  background-color: whitesmoke;
   -webkit-transform: skew(-10deg);
   -ms-transform: skew(-10deg);
   transform: skew(-10deg);
   box-shadow: 0px 0px 20px blueviolet;
-  margin: 15px;
+  margin: 20px;
+  margin-top: 100px;
 }
 
 .secondary-infos {
@@ -37,14 +39,13 @@
   gap: 30px;
   width: 100%;
   height: 300px;
-  /* background-color: aqua; */
 }
 
 
 .img-node {
   background-color: blueviolet;
-  height: 180px;
-  width: 180px;
+  height: 170px;
+  width: 170px;
   border-radius: 100%;
   position: absolute;
   left: 30px;
@@ -58,7 +59,7 @@
   width: 120px;
   border-radius: 100%;
   position: absolute;
-  left: 300px;
+  left: 325px;
   top: 200px;
   text-align: center;
 }
@@ -70,15 +71,39 @@
   border-radius: 100%;
   position: absolute;
   left: 160px;
+  top: 500px;
+  text-align: center;
+}
+
+.img-axios {
+  background-color: blueviolet;
+  height: 140px;
+  width: 260px;
+  border-radius: 5%;
+  position: absolute;
+  left: 60px;
   top: 300px;
   text-align: center;
+  rotate: -20deg;
+}
+
+.img-express {
+  background-color: blueviolet;
+  height: 140px;
+  width: 260px;
+  border-radius: 5%;
+  position: absolute;
+  left: 60px;
+  top: 700px;
+  text-align: center;
+  rotate: 20deg;
 }
 
 
 img#node {
   width: 150px;
   height: 150px;
-  padding-top: 15px;
+  padding-top: 10px;
 }
 
 img#sql {
@@ -91,4 +116,60 @@ img#react {
   width: 120px;
   height: 120px;
   padding-top: 5px;
+}
+
+img#axios {
+  width: 240px;
+  height: 120px;
+  padding-top: 10px;
+  border-radius: 5%;
+}
+
+img#express {
+  width: 240px;
+  height: 120px;
+  padding-top: 10px;
+  border-radius: 5%;
+}
+
+
+.secondary-infos > a#title {
+  color: rgb(116, 22, 134);
+  font-weight: 500;
+  font-size: 70px;
+  position: absolute;
+  left: 30px;
+  top: 50px;
+}
+
+.secondary-infos > a#title2 {
+  color: black;
+  font-weight: 500;
+  font-size: 70px;
+  position: absolute;
+  left: 270px;
+  top: 50px;
+}
+
+.about-container {
+  background-color: rgb(255, 255, 255);
+  width: 500px;
+  min-width: 300px;
+  height: 230px;
+  position: absolute;
+  top: 430px;
+  right: 180px;
+  box-shadow: 0px 0px 10px 1px rgb(186, 141, 223);
+  border-radius: 10px;
+}
+
+.about-container > a#about {
+  color: black;
+  font-size: 20px;
+}
+
+.about-container > a#about2 {
+  color: black;
+  font-size: 20px;
+  padding-top: 60px;
 }

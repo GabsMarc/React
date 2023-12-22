@@ -1,0 +1,11 @@
+
+
+.save-container {
+    position: absolute;
+    width: 400px;
+    height: 200px;
+    background-color: red;
+    top: 20%;
+    left: 10%;
+    right: 10%;
+}

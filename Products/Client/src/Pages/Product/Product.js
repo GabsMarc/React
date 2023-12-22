@@ -36,9 +36,8 @@ export default function Product() {
                         )
                     })}
 
-            </div>
-
             <Footer />
+            </div>
         </div>
     )
 } 

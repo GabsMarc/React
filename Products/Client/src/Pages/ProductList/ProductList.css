@@ -2,6 +2,7 @@
 .product-container{
     display: flex;
     flex-direction: column;
+    height: 900px;
 }
 
 .list-container {

@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import './Input.css'
 import Axios from 'axios'
+import { ModalSave } from "../Modal/Modal";
 
 
 export function Input() {
@@ -87,6 +88,8 @@ export function InputEdit(props) {
         category: props.category,
     });
 
+    const [openModal, setOpenModal] = useState(true)
+
     const handleChangeValues = (values) => {
         setEditValues((prevValues) => ({
             ...prevValues,
@@ -97,12 +100,16 @@ export function InputEdit(props) {
     };
 
     const handleEditGame = () => {
-        Axios.put("http://localhost:3001/edit", {
-            id: editValues.id,
-            name: editValues.name,
-            value: editValues.value,
-            category: editValues.category,
-        })
+
+        setOpenModal(!openModal)
+        // <ModalSave openModal={openModal}/>
+
+        // Axios.put("http://localhost:3001/edit", {
+        //     id: editValues.id,
+        //     name: editValues.name,
+        //     value: editValues.value,
+        //     category: editValues.category,
+        // })
     };
 
     return (
@@ -135,6 +142,7 @@ export function InputEdit(props) {
                     <a>Salvar</a>
                 </div>
             </div>
+                    <ModalSave openModal={openModal} />
         </div>
 
     )
