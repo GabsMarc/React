@@ -20,11 +20,11 @@ export function Input() {
             category: values.category,
             value: values.value
         }).then((response) => {
-            console.log(response)
+            // console.log(response)
         })
 
     }
-    console.log(values)
+    // console.log(values)
 
 
     return (
@@ -88,29 +88,49 @@ export function InputEdit(props) {
         category: props.category,
     });
 
-    const [openModal, setOpenModal] = useState(true)
+    const [openModal, setOpenModal] = useState(false)
+    const [typeOfOperation, setTypeOfOperation] = useState()
 
     const handleChangeValues = (values) => {
         setEditValues((prevValues) => ({
             ...prevValues,
             [values.target.id]: values.target.value,
         }));
-        console.log(editValues)
 
     };
 
-    const handleEditGame = () => {
+    function OpenModal(value) {
+        if (value === 1) {
+            setTypeOfOperation(1)
+            handleOpenModal()
 
+        } else if (value === 2) {
+            setTypeOfOperation(2)
+            handleOpenModal()
+
+        }
+    }
+
+    const handleOpenModal = () => {
         setOpenModal(!openModal)
-        // <ModalSave openModal={openModal}/>
-
-        // Axios.put("http://localhost:3001/edit", {
-        //     id: editValues.id,
-        //     name: editValues.name,
-        //     value: editValues.value,
-        //     category: editValues.category,
-        // })
     };
+
+
+    function saveEdit(value) {
+        if (value === true) {
+            Axios.put("http://localhost:3001/edit", {
+                id: editValues.id,
+                name: editValues.name,
+                value: editValues.value,
+                category: editValues.category,
+            })
+            console.log('atualizado com sucesso!')
+        } else if(value === false) {
+            Axios.delete(`http://localhost:3001/delete/${editValues.id}`)
+            console.log('Deletado com sucesso!')
+        }
+    }
+
 
     return (
         <div>
@@ -135,14 +155,14 @@ export function InputEdit(props) {
                     onChange={handleChangeValues}
 
                 />
-                <div
-                    className="button-save"
-                    onClick={handleEditGame}
-                >
+                <div className="button-save" onClick={() => OpenModal(1)}>
                     <a>Salvar</a>
                 </div>
+                <div className="button-delete" onClick={() => OpenModal(2)}>
+                    <a>Excluir</a>
+                </div>
             </div>
-                    <ModalSave openModal={openModal} />
+            <ModalSave openModal={openModal} closeModal={handleOpenModal} save={saveEdit} Operation={typeOfOperation} />
         </div>
 
     )

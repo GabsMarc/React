@@ -4,6 +4,7 @@ import Axios from 'axios'
 import { ButtonDelete } from "../Button/Button";
 import { InputEdit } from "../Input/Input";
 import { Link } from 'react-router-dom';
+import { ModalSave } from "../Modal/Modal";
 
 
 export default function ListItens() {
@@ -16,6 +17,7 @@ export default function ListItens() {
         })
 
     }, [listProducts])
+
 
     return (
         <div>
@@ -37,10 +39,6 @@ export default function ListItens() {
                                     value={value.value}
                                     setListProducts={setListProducts}
                                 />
-
-                                <div className="actions">
-                                    <ButtonDelete id={value.id} />
-                                </div>
                             </div>
                         )
                     })}

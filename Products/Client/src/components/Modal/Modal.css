@@ -1,11 +1,96 @@
-
-
 .save-container {
+    width: 100%;
+    top: 0;
+    left: 0;
+    bottom: 0;
     position: absolute;
-    width: 400px;
-    height: 200px;
-    background-color: red;
-    top: 20%;
-    left: 10%;
-    right: 10%;
+    background: rgba(49, 49, 49, 0.5);
+    display: flex;
+}
+
+.save-message {
+    background-color: rgb(255, 255, 255);
+    border-radius: 10px;
+    width: 300px;
+    height: 130px;
+    margin: auto;
+    margin-top: 300px;
+    display: flex;
+    flex-direction: column;
+}
+
+.close-modal {
+    display: flex;
+    text-align: center;
+    background-color: rgb(214, 214, 214);
+    border-top-right-radius: 8px;
+    border-top-left-radius: 8px;
+    justify-content: end;
+}
+
+.close-modal>#title {
+    flex-grow: 1;
+    text-align: left;
+    padding-left: 10px;
+}
+
+.close-modal>#title>a {
+    color: black;
+}
+
+.close-modal>#close {
+    width: 40px;
+    background-color: blueviolet;
+    border-top-right-radius: 7px;
+    cursor: pointer;
+}
+
+.close-modal>#close:hover {
+    background-color: rgb(97, 1, 187);
+    transition: 0.5s;
+}
+
+.close-modal>#close>a {
+    color: white;
+}
+
+.content-modal {
+    display: flex;
+    flex-grow: 1;
+}
+
+.message {
+    display: flex;
+    padding-bottom: 10px;
+}
+
+.message>div>a {
+    color: black;
+}
+
+
+.button-modal {
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: end;
+    padding-bottom: 10px;
+}
+
+.button-modal>a {
+    color: black;
+}
+
+
+.button {
+    background-color: rgb(123, 99, 211);
+    text-align: center;
+    margin-right: 10px;
+    border-radius: 10px;
+    cursor: pointer;
+}
+
+.button:hover {
+    background-color: rgb(98, 63, 224);
+    transition: 0.5s;
 }
