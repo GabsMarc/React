@@ -34,11 +34,18 @@ export function ModalSave(props) {
             props.save(false)
         }
         props.closeModal()
+        // props.refreshItens(true)
     }
 
     function cancelEdit() {
         props.closeModal()
     }
+
+    // function refresIhtens(value) {
+    //     if (value == true) {
+    //         props.refreshItens(true)
+    //     }
+    // }
 
     if (props.openModal) {
         return (

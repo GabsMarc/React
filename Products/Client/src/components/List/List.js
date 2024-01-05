@@ -9,15 +9,47 @@ import { ModalSave } from "../Modal/Modal";
 
 export default function ListItens() {
 
-    const [listProducts, setListProducts] = useState()
+    const [listProducts, setListProducts] = useState([])
+    const [refreshItens, setRefreshItens] = useState()
+
+
 
     useEffect(() => {
+        refreshList()
+    }, [refreshItens])
+
+
+
+
+    function refreshList() {
         Axios.get('http://localhost:3001/getProduct').then((response) => {
             setListProducts(response.data)
+            console.log('refresh')
+            console.log(listProducts)
         })
+    }
 
-    }, [listProducts])
 
+
+    function updateList(value, id) {
+        if (value == 1) {
+            Axios
+                .delete(`http://localhost:3001/delete/${id}`)
+                .then(({ data }) => {
+                    const newArray = listProducts.filter((list) => list.id !== id)
+
+                    setListProducts(newArray)
+                    console.log(listProducts)
+                })
+
+            console.log('Deletado com sucesso!')
+            setTimeout(() => {
+                setRefreshItens(1)
+            }, 3000);
+        } else if (value == 2) {
+            setRefreshItens(2)
+        }
+    }
 
     return (
         <div>
@@ -27,9 +59,9 @@ export default function ListItens() {
                     <a id="cat">Categoria</a>
                     <a id="val">Valor</a>
                 </div>
-                {typeof listProducts != 'undefined' &&
+                {
+                    typeof listProducts != 'undefined' &&
                     listProducts.map((value) => {
-
                         return (
                             <div className="input-conteiner">
                                 <InputEdit
@@ -37,11 +69,14 @@ export default function ListItens() {
                                     name={value.name}
                                     category={value.category}
                                     value={value.value}
-                                    setListProducts={setListProducts}
+                                    updateList={updateList}
                                 />
                             </div>
                         )
-                    })}
+                    }
+                    )
+
+                }
             </div>
             <div className="add-container">
                 <div className="add-button">

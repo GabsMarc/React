@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import './Input.css'
 import Axios from 'axios'
 import { ModalSave } from "../Modal/Modal";
@@ -81,15 +81,24 @@ export function Input() {
 
 
 export function InputEdit(props) {
-    const [editValues, setEditValues] = useState({
-        id: props.id,
-        name: props.name,
-        value: props.value,
-        category: props.category,
-    });
+    const [editValues, setEditValues] = useState({});
+
+    useEffect(() => {
+        setEditValues({
+            id: props.id,
+            name: props.name,
+            value: props.value,
+            category: props.category,
+        })
+    }, [])
+
+
+    //ADICIONAR USE EFFECT PARA RENDERIZAR OS CAMPOS DOS INPUTS >:)
+
 
     const [openModal, setOpenModal] = useState(false)
     const [typeOfOperation, setTypeOfOperation] = useState()
+
 
     const handleChangeValues = (values) => {
         setEditValues((prevValues) => ({
@@ -124,16 +133,17 @@ export function InputEdit(props) {
                 value: editValues.value,
                 category: editValues.category,
             })
+            props.updateList(2)
             console.log('atualizado com sucesso!')
-        } else if(value === false) {
-            Axios.delete(`http://localhost:3001/delete/${editValues.id}`)
-            console.log('Deletado com sucesso!')
+        } else if (value === false) {
+            props.updateList(1, editValues.id)
+
         }
     }
 
-
     return (
         <div>
+
             <div style={{ display: "flex" }}>
                 <input
                     type="text"
@@ -158,11 +168,17 @@ export function InputEdit(props) {
                 <div className="button-save" onClick={() => OpenModal(1)}>
                     <a>Salvar</a>
                 </div>
-                <div className="button-delete" onClick={() => OpenModal(2)}>
+                <div className="button-delete" onClick={() => saveEdit(false)}>
                     <a>Excluir</a>
                 </div>
             </div>
-            <ModalSave openModal={openModal} closeModal={handleOpenModal} save={saveEdit} Operation={typeOfOperation} />
+
+            {/* <ModalSave
+                openModal={openModal}
+                closeModal={handleOpenModal}
+                save={saveEdit}
+                Operation={typeOfOperation}
+            /> */}
         </div>
 
     )
