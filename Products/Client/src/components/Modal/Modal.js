@@ -10,14 +10,20 @@ export function ModalSave(props) {
         if (props.Operation === 1) {
             setTextModal({
                 title: 'Alterar Registro',
-                question: 'Deseja confirmar a alteração?',
-                textButton: 'Salvar'
+                question: 'Deseja fazer uma alteração?',
+                textButton: 'Confirmar'
             })
         } else if (props.Operation === 2) {
             setTextModal({
                 title: 'Excluir Registro',
                 question: 'Deseja confirmar a exclusão?',
                 textButton: 'Excluir'
+            })
+        } else if (props.Operation === 3) {
+            setTextModal({
+                title: 'Alterar Registro',
+                question: 'Deseja confirmar a alteração?',
+                textButton: 'Salvar'
             })
         }
     }
@@ -29,25 +35,19 @@ export function ModalSave(props) {
 
     const onSaveModal = () => {
         if (props.Operation === 1) {
-            props.save(true)
+            props.save(1, props.id)
         } else if (props.Operation === 2) {
-            props.save(false)
+            props.save(2, props.id)
         }
         props.closeModal()
-        // props.refreshItens(true)
     }
 
     function cancelEdit() {
         props.closeModal()
     }
 
-    // function refresIhtens(value) {
-    //     if (value == true) {
-    //         props.refreshItens(true)
-    //     }
-    // }
 
-    if (props.openModal) {
+    if (props.openModalMessage) {
         return (
             <div className="save-container">
                 <div className="save-message">

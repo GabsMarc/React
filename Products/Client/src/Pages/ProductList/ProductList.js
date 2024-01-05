@@ -10,13 +10,13 @@ export default function ProductList() {
             <div className="product-container">
                 <Header />
                 <div className="list-title">
-                    <h2>Titulo</h2>
+                    <h2>Lista de registros</h2>
                 </div>
                 <div className="list-container">
                     <ListItens />
                 </div>
             </div>
-                <Footer />
+            <Footer />
         </div>
     )
 }

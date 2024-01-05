@@ -1,37 +1,52 @@
 import React, { useState, useEffect } from "react";
 import './List.css'
 import Axios from 'axios'
-import { ButtonDelete } from "../Button/Button";
 import { InputEdit } from "../Input/Input";
 import { Link } from 'react-router-dom';
-import { ModalSave } from "../Modal/Modal";
+import { UpdateModal } from "../../Pages/UpdateModal/UpdateModal";
 
 
 export default function ListItens() {
 
     const [listProducts, setListProducts] = useState([])
     const [refreshItens, setRefreshItens] = useState()
-
+    const [openModalUpdate, setOpenModalUpdate] = useState(false)
+    const [updateID, setUpdateId] = useState()
 
 
     useEffect(() => {
         refreshList()
-    }, [refreshItens])
-
-
+    }, [refreshItens, listProducts])
 
 
     function refreshList() {
         Axios.get('http://localhost:3001/getProduct').then((response) => {
             setListProducts(response.data)
-            console.log('refresh')
-            console.log(listProducts)
         })
     }
 
+    function openModal(open, id) {
+        if (open == true) {
+            setOpenModalUpdate(!openModalUpdate)
+            setUpdateId(id)
+        } else {
+            setOpenModalUpdate(!openModalUpdate)
+        }
+    }
 
+    function ModalUpdate() {
+        if (openModalUpdate) {
+            return (
+                <UpdateModal
+                    openModalUpdate={openModal}
+                    id={updateID}
+                    start={true}
+                />
+            )
+        }
+    }
 
-    function updateList(value, id) {
+    function deleteItem(value, id) {
         if (value == 1) {
             Axios
                 .delete(`http://localhost:3001/delete/${id}`)
@@ -39,15 +54,11 @@ export default function ListItens() {
                     const newArray = listProducts.filter((list) => list.id !== id)
 
                     setListProducts(newArray)
-                    console.log(listProducts)
                 })
-
             console.log('Deletado com sucesso!')
-            setTimeout(() => {
-                setRefreshItens(1)
-            }, 3000);
+            setRefreshItens(!refreshItens)
         } else if (value == 2) {
-            setRefreshItens(2)
+            setRefreshItens(!refreshItens)
         }
     }
 
@@ -69,14 +80,18 @@ export default function ListItens() {
                                     name={value.name}
                                     category={value.category}
                                     value={value.value}
-                                    updateList={updateList}
+                                    deleteItem={deleteItem}
+                                    openModal={openModal}
                                 />
                             </div>
                         )
                     }
                     )
-
                 }
+                {
+                    ModalUpdate()
+                }
+
             </div>
             <div className="add-container">
                 <div className="add-button">

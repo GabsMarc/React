@@ -14,6 +14,7 @@ const db = mysql.createPool({
 })
 
 
+
 app.get('/getProduct', (req, res) => {
 
     let SQL = `SELECT * FROM items`
@@ -23,6 +24,23 @@ app.get('/getProduct', (req, res) => {
         else res.send(result)
     })
 })
+
+
+app.get('/getProductById/:id', (req, res) => {
+    const id = req.params.id
+    
+    let SQL = `SELECT * 
+               FROM items
+               WHERE id = ?
+               `
+
+    db.query(SQL, [id], (err, result) => {
+        if (err) console.log(err)
+        else res.send(result), console.log('Concluido com sucesso!')
+    })
+
+})
+
 
 app.post('/register', (req, res) => {
     let name = req.body.name
@@ -40,6 +58,7 @@ app.post('/register', (req, res) => {
     })
 })
 
+
 app.delete('/delete/:id', (req, res) => {
     const { id } = req.params
     let SQL = `DELETE 
@@ -51,6 +70,7 @@ app.delete('/delete/:id', (req, res) => {
         else res.send(result), console.log('Deletado com sucesso!')
     })
 })
+
 
 app.put('/edit', (req, res) => {
     const { id } = req.body
@@ -74,6 +94,10 @@ app.put('/edit', (req, res) => {
     })
 
 })
+
+
+
+
 
 
 

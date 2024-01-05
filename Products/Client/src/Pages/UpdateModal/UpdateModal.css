@@ -1,0 +1,89 @@
+.save-container {
+    width: 100%;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    position: absolute;
+    background: rgba(49, 49, 49, 0.5);
+    display: flex;
+    height: 1500px;
+}
+
+.modal {
+    background-color: rgb(255, 255, 255);
+    border-radius: 10px;
+    margin: auto;
+    margin-top: 300px;
+    display: flex;
+    flex-direction: row;
+}
+
+.input-title {
+    display: flex;
+    flex-direction: row;
+    gap: 140px;
+    padding-left: 30px;
+}
+
+.input-title>a {
+    color: black;
+    font-weight: 500;
+}
+
+.container-input {
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+}
+
+.inputs-container>input{
+    margin: 10px;
+    height: 30px;
+    width: 160px;
+    border-radius: 10px;
+    border: none;
+    background-color: rgb(214, 214, 214);
+    font-size: 16px;
+}
+
+.buttons {
+    display: flex;
+    flex-grow: 1;
+    flex-direction: column;
+    justify-content: center;
+    gap: 15px;
+    padding-bottom: 10px;
+}
+
+.save-button {
+    background-color: rgb(123, 99, 211);
+    text-align: center;
+    margin-right: 10px;
+    border-radius: 10px;
+    cursor: pointer;
+}
+
+.cancel-button {
+    background-color: rgb(218, 81, 81);
+    text-align: center;
+    margin-right: 10px;
+    border-radius: 10px;
+    cursor: pointer;
+}
+
+.save-button:hover{
+    background-color: rgb(90, 54, 219);
+    transition: 0.4s;
+}
+
+.cancel-button:hover {
+    background-color: rgb(247, 15, 15);
+    transition: 0.4s;
+}
+
+.teste {
+    display: flex;
+    justify-content: center;
+    margin: auto;
+    padding-bottom: 30px;
+}

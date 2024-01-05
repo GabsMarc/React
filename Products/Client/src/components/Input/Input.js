@@ -20,11 +20,9 @@ export function Input() {
             category: values.category,
             value: values.value
         }).then((response) => {
-            // console.log(response)
         })
 
     }
-    // console.log(values)
 
 
     return (
@@ -81,34 +79,11 @@ export function Input() {
 
 
 export function InputEdit(props) {
-    const [editValues, setEditValues] = useState({});
-
-    useEffect(() => {
-        setEditValues({
-            id: props.id,
-            name: props.name,
-            value: props.value,
-            category: props.category,
-        })
-    }, [])
-
-
-    //ADICIONAR USE EFFECT PARA RENDERIZAR OS CAMPOS DOS INPUTS >:)
-
-
-    const [openModal, setOpenModal] = useState(false)
+    const [openModalMessage, setOpenModalMessage] = useState(false)
     const [typeOfOperation, setTypeOfOperation] = useState()
+    const [deleteID, setDeleteID] = useState()
 
-
-    const handleChangeValues = (values) => {
-        setEditValues((prevValues) => ({
-            ...prevValues,
-            [values.target.id]: values.target.value,
-        }));
-
-    };
-
-    function OpenModal(value) {
+    function OpenModal(value, id) {
         if (value === 1) {
             setTypeOfOperation(1)
             handleOpenModal()
@@ -116,28 +91,22 @@ export function InputEdit(props) {
         } else if (value === 2) {
             setTypeOfOperation(2)
             handleOpenModal()
+            setDeleteID(id)
 
         }
     }
 
     const handleOpenModal = () => {
-        setOpenModal(!openModal)
+        setOpenModalMessage(!openModalMessage)
     };
 
 
-    function saveEdit(value) {
-        if (value === true) {
-            Axios.put("http://localhost:3001/edit", {
-                id: editValues.id,
-                name: editValues.name,
-                value: editValues.value,
-                category: editValues.category,
-            })
-            props.updateList(2)
-            console.log('atualizado com sucesso!')
-        } else if (value === false) {
-            props.updateList(1, editValues.id)
-
+    function saveEdit(value, id) {
+        if (value == 1) {
+            props.openModal(true, props.id)
+        }
+        else if (value == 2) {
+            props.deleteItem(1, id)
         }
     }
 
@@ -145,40 +114,35 @@ export function InputEdit(props) {
         <div>
 
             <div style={{ display: "flex" }}>
-                <input
-                    type="text"
-                    id="name"
-                    defaultValue={props.name}
-                    onChange={handleChangeValues}
-                />
-                <input
-                    type="text"
-                    id="category"
-                    defaultValue={props.category}
-                    onChange={handleChangeValues}
 
-                />
-                <input
-                    type="number"
-                    id="value"
-                    defaultValue={props.value}
-                    onChange={handleChangeValues}
-
-                />
-                <div className="button-save" onClick={() => OpenModal(1)}>
-                    <a>Salvar</a>
+                <div style={{ display: 'flex', gap: 5 }}>
+                    <div className="text-component" style={{ width: 180 }}>
+                        <a>{props.name}</a>
+                    </div>
+                    <div className="text-component">
+                        <a>{props.category}</a>
+                    </div>
+                    <div className="text-component">
+                        <a>R$ {props.value}</a>
+                    </div>
                 </div>
-                <div className="button-delete" onClick={() => saveEdit(false)}>
+
+
+                <div className="button-save" onClick={() => OpenModal(1)}>
+                    <a>Alterar</a>
+                </div>
+                <div className="button-delete" onClick={() => OpenModal(2, props.id)}>
                     <a>Excluir</a>
                 </div>
             </div>
 
-            {/* <ModalSave
-                openModal={openModal}
+            <ModalSave
+                openModalMessage={openModalMessage}
                 closeModal={handleOpenModal}
                 save={saveEdit}
                 Operation={typeOfOperation}
-            /> */}
+                id={deleteID}
+            />
         </div>
 
     )
