@@ -11,7 +11,7 @@
 .save-message {
     background-color: rgb(255, 255, 255);
     border-radius: 10px;
-    width: 300px;
+    width: 308px;
     height: 130px;
     margin: auto;
     margin-top: 300px;
@@ -93,4 +93,36 @@
 .button:hover {
     background-color: rgb(98, 63, 224);
     transition: 0.5s;
+}
+
+
+
+
+.message-container {
+    background-color: rgb(255, 255, 255);
+    border-radius: 10px;
+    width: 308px;
+    height: 130px;
+    margin: auto;
+    margin-top: 300px;
+    display: flex;
+    flex-direction: column;
+}
+
+.title-message {
+    display: flex;
+    text-align: center;
+    background-color: rgb(143, 126, 153);
+    border-top-right-radius: 8px;
+    border-top-left-radius: 8px;
+}
+
+.title-message>#title>a {
+    color: white;
+    font-size: 17px;
+}
+
+.message > div {
+    margin-top: 10px;
+    padding-left: 10px;
 }

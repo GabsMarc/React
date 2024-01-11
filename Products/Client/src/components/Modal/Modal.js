@@ -77,3 +77,28 @@ export function ModalSave(props) {
     }
 
 }
+
+
+export function ModalMessage(props) {
+
+    return (
+        <div className="save-container">
+            <div className="message-container">
+                <div className="title-message">
+                    <div id="title">
+                        <a>{props.title}</a>
+                    </div>
+                </div>
+                <div className="content-modal">
+                    <div className="message">
+                        <div>
+                            <a>{props.message}</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    )
+
+
+}
