@@ -1,6 +1,6 @@
-import { Navbar } from "../../components/Navbar"
+import { Navbar } from "../../Shared/components/Navbar"
 import styled from "styled-components"
-import { Footer } from "../../components/Footer"
+import { Footer } from "../../Shared/components/Footer"
 
 import Rosa from "../../../image/a.png"
 

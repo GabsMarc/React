@@ -1,6 +1,6 @@
 import styled from "styled-components"
 import { Link } from "react-router-dom"
-import logo from "../../image/pixel_hamburguer.png"
+import logo from "../../../image/pixel_hamburguer.png"
 
  
 
@@ -79,11 +79,11 @@ const Pages = styled(Link)`
     text-decoration: none;
     font-family: overpass;
     padding-top: 4px;
+    transition: 0.4s;
 
 
     &:hover{
         color: #47bbf1;
-        transition: 0.4s;
     }
     
 `
