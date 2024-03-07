@@ -38,8 +38,8 @@ export const Navbar = (props: { show: boolean }) => {
 
 
 const Navbar_Container = styled.div`
-    height: 120px;
-    background-color: #ee5858;
+    height: 130px;
+    background-color: #C00038;
     display: flex;
     flex-direction: column;
     align-items: end;
@@ -75,15 +75,15 @@ const Navbar_Buttons = styled.div<{ $justifycontent?: string }>`
 
 const Pages = styled(Link)`
     color: white;
-    font-size: 17px;
+    font-size: 20px;
     text-decoration: none;
     font-family: overpass;
+    font-weight: bold;
     padding-top: 4px;
     transition: 0.4s;
 
-
     &:hover{
-        color: #47bbf1;
+        color: #95BBDE;
     }
     
 `

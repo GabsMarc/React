@@ -23,7 +23,7 @@ export const Dashboard = () => {
 const Dashboard_Container = styled.div`
     display: flex;
     flex-direction: column;
-    background-color: #ee5858;
+    background-color: #C00038;
 `
 
 const Banner = styled.div`

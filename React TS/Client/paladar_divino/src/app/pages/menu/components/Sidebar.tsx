@@ -1,6 +1,7 @@
 import { FaHome, FaShoppingCart } from "react-icons/fa"
-import { IoLogOut } from "react-icons/io5";
+import { TbLogout2 } from "react-icons/tb";
 import styled from "styled-components"
+import logoPixel from '../../../../image/pixel_hamburguer.png'
 
 
 
@@ -8,20 +9,26 @@ export function Sidebar() {
     return (
         <Sidebar_Container>
             <Sidebar_Options>
-                <Sidebar_Buttons>
+                <Logo src={logoPixel} />
 
-                    <a href=""><FaHome /></a>
-                    <span>Página inicial</span>
-                </Sidebar_Buttons>
+                <Options>
+                    <Buttons>
+                        <Li>
+                            <a href=""><FaHome /></a>
+                            <p>Página inicial</p>
+                        </Li>
 
-                <Sidebar_Buttons>
-                    <a href=""><FaShoppingCart /></a>
-                    <span>Carrinho</span>
-                </Sidebar_Buttons>
+                        <Li>
+                            <a href=""><FaShoppingCart /></a>
+                            <p>Carrinho</p>
+                        </Li>
 
-                <Sidebar_Buttons>
-                    <a href=""><IoLogOut />desconectar</a>
-                </Sidebar_Buttons>
+                        <Li style={{ marginTop: 560 }}>
+                            <a href=""><TbLogout2 /></a>
+                            <p>Desconectar</p>
+                        </Li>
+                    </Buttons>
+                </Options>
             </Sidebar_Options>
         </Sidebar_Container>
     )
@@ -29,35 +36,86 @@ export function Sidebar() {
 
 
 const Sidebar_Container = styled.div`
-    background-color: rebeccapurple;
+    background-color: #C00038;
     display: flex;
     flex-direction: column;
     align-items: center;
-    height: 900px;
-    width: 200px;
-    transition: 0.5s;
-    position: absolute;
+    height: 100%;
+    width: 100px;
+    transition: 0.4s;
+    position: fixed;
+    font-family: overpass;
+    box-shadow: 5px 0px 10px 5px #00000034;
     
     &:hover{
-        width: 200px;
-        
-    }
+        width: 300px;
     
-    `
+        p{
+            display: block;
+            opacity: 100;
+        }
+
+        img{
+            width: 90px;
+            height: 70px;
+        }
+
+    }
+
+`
 
 const Sidebar_Options = styled.div`
     display: flex;
     flex-direction: column;
 
-    a{
-        text-decoration: none;
-        color: black;
-        font-size: 30px;
-        font-family: overpass;
-    }
 `
 
-const Sidebar_Buttons = styled.div`
+const Logo = styled.img`
+    width: 80px;
+    height: 60px;
+    padding-top: 10px;
+    transition: 0.7s;
+`
+
+const Options = styled.div`
+    position: absolute;
+    display: flex;
+    flex-direction: column;
+    left: 20px;
+    margin-top: 100px;
+`
+
+const Buttons = styled.ul`
+    list-style-type: none;
+    text-decoration: none;
+`
+
+const Li = styled.li`
+    display: flex;
+    gap: 30px;
+    transition: 0.3s;
+    border-radius: 20px;
+    margin-top: 10px;
+    padding: 0px 15px;
+    padding-top: 18px;
+    color: white;
+
+    a {
+        font-size: 35px;
+        color: white;
+        white-space: nowrap;
+        padding-bottom: 3px;
+    }
+
+    p {
+        display: none;
+        font-size: 27px; 
+        white-space: nowrap;
+    }
+
+    &:hover{
+        background-color: #00000060;
+    }
 
 `
 
