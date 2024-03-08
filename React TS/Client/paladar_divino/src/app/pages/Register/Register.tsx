@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react"
-import { Card } from "../../Shared/components/Card"
+import { Card } from "../../Shared/components/AccessCard"
 
 export const RegisterPage = () => {
 

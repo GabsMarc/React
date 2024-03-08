@@ -2,15 +2,24 @@ import { FaHome, FaShoppingCart } from "react-icons/fa"
 import { TbLogout2 } from "react-icons/tb";
 import styled from "styled-components"
 import logoPixel from '../../../../image/pixel_hamburguer.png'
+import { Link, useNavigate } from "react-router-dom";
+
 
 
 
 export function Sidebar() {
+
+    const navigate = useNavigate()
+
+    function Access(logout: boolean) {
+
+        navigate('/pagina-inicial')
+    }
+
     return (
         <Sidebar_Container>
             <Sidebar_Options>
-                <Logo src={logoPixel} />
-
+                <Link to={'/pagina-inicial'}><Logo src={logoPixel} /></Link>
                 <Options>
                     <Buttons>
                         <Li>
@@ -23,7 +32,7 @@ export function Sidebar() {
                             <p>Carrinho</p>
                         </Li>
 
-                        <Li style={{ marginTop: 560 }}>
+                        <Li style={{ marginTop: 560 }} onClick={() => Access(true)}>
                             <a href=""><TbLogout2 /></a>
                             <p>Desconectar</p>
                         </Li>
@@ -52,7 +61,6 @@ const Sidebar_Container = styled.div`
     
         p{
             display: block;
-            opacity: 100;
         }
 
         img{
@@ -99,11 +107,11 @@ const Li = styled.li`
     padding: 0px 15px;
     padding-top: 18px;
     color: white;
+    cursor: pointer;
 
     a {
         font-size: 35px;
         color: white;
-        white-space: nowrap;
         padding-bottom: 3px;
     }
 

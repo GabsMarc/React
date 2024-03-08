@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react"
-import { Card } from "../../Shared/components/Card"
+import { Card } from "../../Shared/components/AccessCard"
 import { Await, useNavigate } from "react-router-dom"
 
 export const LoginPage = () => {

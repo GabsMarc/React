@@ -1,7 +1,7 @@
 import styled from "styled-components"
 import { Sidebar } from "./components/Sidebar"
-import { Footer } from "../../Shared/components/Footer"
 import banner from '../../../image/Rosa.png'
+import { ProductCard } from "./components/ProductCard"
 
 
 
@@ -14,14 +14,19 @@ export function Menu() {
                     <Banner />
                     <Options>
                         <span>Salgados</span>
-                        <span>Hamburguers</span>
+                        <span>Hamburguers</span> 
                         <span>Bebidas</span>
                     </Options>
+                    <CardContainer>
+                        <Cards>
+                            <ProductCard name="Tradicional da Casa" value={'27,90'}/>
+                            <ProductCard name="Melted" value={'25,00'}/>
+                            <ProductCard name="Classico" value={'22,90'}/>
+                            <ProductCard name="Frando Empanado" value={'50,99'}/>
+                        </Cards>
+                    </CardContainer>
                 </Page>
             </MenuContainer>
-            {/* <MenuFooter>
-                <Footer />
-            </MenuFooter> */}
         </MenuPage>
     )
 }
@@ -56,7 +61,7 @@ const Banner = styled.div`
     height: 35vh;
     background-image: url(${banner});
     border-radius: 10px;
-    box-shadow: 10px 10px 10px 5px #00000057;
+    box-shadow: 0px 10px 10px 5px #00000057;
 `
 
 const Options = styled.div`
@@ -65,9 +70,10 @@ const Options = styled.div`
         gap: 60px;
         background-color: #C00038;
         justify-content: center;
-        box-shadow: 10px 10px 10px 5px #00000057;
         padding-top: 5px;
         border-radius: 10px;
+        margin-bottom: 30px;
+        box-shadow: 0px 10px 10px 5px #00000057;
         
         span {
             transition: 0.3s;
@@ -85,12 +91,31 @@ const Options = styled.div`
 `
 
 
-
-
-
-
-const MenuFooter = styled.div`
+const CardContainer = styled.div`
     display: flex;
-    background-color: #2673b6;
-    
+    width: 90vw;
+    padding: 20px;
+    background-color: #ffffff;
+    border-radius: 10px;
+
 `
+
+const Cards = styled.div`
+    display: flex;
+    gap: 47px;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+`
+
+
+
+
+
+
+
+
+
+
+
+
+
