@@ -3,11 +3,17 @@ import { TbLogout2 } from "react-icons/tb";
 import styled from "styled-components"
 import logoPixel from '../../../../image/pixel_hamburguer.png'
 import { Link, useNavigate } from "react-router-dom";
+import React, { PropsWithChildren } from "react";
 
 
+interface ISidebar {
+    onClickHomePage?: (value: boolean) => void
+}
 
 
-export function Sidebar() {
+export const Sidebar: React.FC<PropsWithChildren<ISidebar>> = ({
+    onClickHomePage
+}) => {
 
     const navigate = useNavigate()
 
@@ -22,19 +28,16 @@ export function Sidebar() {
                 <Link to={'/pagina-inicial'}><Logo src={logoPixel} /></Link>
                 <Options>
                     <Buttons>
-                        <Li>
-                            <a href=""><FaHome /></a>
-                            <p>Página inicial</p>
+                        <Li onClick={() => onClickHomePage?.(true)}>
+                            <span><FaHome /></span>                      <p>Página inicial</p>
                         </Li>
 
                         <Li>
-                            <a href=""><FaShoppingCart /></a>
-                            <p>Carrinho</p>
+                            <span><FaShoppingCart /></span>                      <p>Pedidos</p>
                         </Li>
 
                         <Li style={{ marginTop: 560 }} onClick={() => Access(true)}>
-                            <a href=""><TbLogout2 /></a>
-                            <p>Desconectar</p>
+                            <span><TbLogout2 /></span>                      <p>Desconectar</p>
                         </Li>
                     </Buttons>
                 </Options>
@@ -109,7 +112,7 @@ const Li = styled.li`
     color: white;
     cursor: pointer;
 
-    a {
+    span {
         font-size: 35px;
         color: white;
         padding-bottom: 3px;

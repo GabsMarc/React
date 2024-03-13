@@ -1,20 +1,24 @@
 import React, { FC, PropsWithChildren } from "react"
 import styled from "styled-components"
-import img_teste from '../../../../image/hamburguer-teste.jpg'
+import Hamburguer from '../../../../image/hamburguer-teste.jpg'
+import Bebida from '../../../../image/bebida.jpg'
+import Salgado from '../../../../image/Salgado.jpg'
 
 interface IProductCard{
     name?: string,
     value?: string,
+    img?: string
 }
 
 export const ProductCard: React.FC<PropsWithChildren<IProductCard>> = ({
     name,
-    value
+    value,
+    img
 }) => {
-
+ 
     return (
         <CardContainer>
-            <ImageProduct />
+            <ImageProduct image={Salgado}/>
             <ProductInfo>
                 <Product>
                     <p>{name}</p>
@@ -43,8 +47,8 @@ const CardContainer = styled.div`
     font-family: overpass;
 `
 
-const ImageProduct = styled.div`
-    background-image: url(${img_teste});
+const ImageProduct = styled.div<{ image: any}>`
+    background-image: url(${props => props.image});
     background-size: cover;
     width: 270px;
     height: 160px;

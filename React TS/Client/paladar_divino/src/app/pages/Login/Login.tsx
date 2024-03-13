@@ -1,6 +1,18 @@
 import { useEffect, useState } from "react"
 import { Card } from "../../Shared/components/AccessCard"
-import { Await, useNavigate } from "react-router-dom"
+import { useNavigate } from "react-router-dom"
+
+
+interface CreateCustomerProps {
+    name: string,
+    lastname: string,
+    email: string,
+    password: string,
+    created_at: string,
+    updated_at: string
+}
+
+
 
 export const LoginPage = () => {
 
