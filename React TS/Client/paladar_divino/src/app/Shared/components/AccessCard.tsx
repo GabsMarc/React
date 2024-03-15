@@ -1,44 +1,35 @@
 import React, { useEffect, useState, PropsWithChildren } from "react"
 import styled from "styled-components"
 import { Footer } from "./Footer"
-import { Link } from "react-router-dom"
+import { Link, useNavigate } from "react-router-dom"
 import Rosa from "../../../image/Rosa.png"
+import { api } from "../../services/api"
+import { Bounce, ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 interface ICardProps {
     TypeOfAccess: boolean
-    name?: string
-    lastname?: string
-    email?: string
-    password?: string
-    confirmPassword?: string
-    onChangeName?: (newValue: string) => void
-    onChangeLastname?: (newValue: string) => void
-    onChangeEmail?: (newValue: string) => void
-    onChangePassword?: (newValue: string) => void
-    onChangeConfirmPassword?: (newValue: string) => void
-    onClick?: (value: boolean) => void
+    propss?: [
+        name: string,
+        lastname: string,
+        emaildd: string,
+    ]
 }
 
 
 export const Card: React.FC<PropsWithChildren<ICardProps>> = ({
     TypeOfAccess,
-    name,
-    lastname,
-    email,
-    password,
-    confirmPassword,
-    onChangeName,
-    onChangeLastname,
-    onChangeEmail,
-    onChangePassword,
-    onChangeConfirmPassword,
-    onClick,
+    propss
 }) => {
 
+    const [name, setName] = useState('')
+    const [lastname, setLastname] = useState('')
+    const [email, setEmail] = useState('')
+    const [password, setPassword] = useState('')
+    const [confirmPassword, setConfirmPassword] = useState('')
+    const [registerComplete, setRegisterComplete] = useState(false)
 
-
-
-
+    const navigate = useNavigate()
     const [access, setAccess] = useState({
         title: '',
         obs: '',
@@ -48,15 +39,49 @@ export const Card: React.FC<PropsWithChildren<ICardProps>> = ({
     );
 
 
-
     useEffect(() => {
         Access()
     }, [TypeOfAccess])
 
 
+    function HandleLogin() {
 
-    function handleConfirm() {
-        onClick?.(true)
+        navigate('/menu')
+
+    }
+
+
+    async function RegisterCustumer() {
+
+        if (password.localeCompare(confirmPassword) != 0) {
+            RejectedMessage('As senhas precisam ser iguais!')
+            return
+        }
+
+        await api.post("/register", {
+            name: name,
+            lastname: lastname,
+            email: email,
+            password: password
+        }).then((cls) => {
+            SuccessMessage()
+            ClearInput()
+        }).catch((err) => {
+            console.log(err)
+            RejectedMessage('Todos os campos precisam ser preenchidos!')
+        })
+
+
+
+    }
+
+
+    function ClearInput() {
+        setName('')
+        setLastname('')
+        setEmail('')
+        setPassword('')
+        setConfirmPassword('')
     }
 
 
@@ -92,19 +117,19 @@ export const Card: React.FC<PropsWithChildren<ICardProps>> = ({
                             placeholder="Endereço de Email"
                             type="email"
                             value={email}
-                            onChange={e => onChangeEmail?.(e.target.value)}
+                            onChange={e => setEmail(e.target.value)}
                         />
 
                         <Input
                             placeholder="Senha"
                             type="password"
                             value={password}
-                            onChange={e => onChangePassword?.(e.target.value)}
+                            onChange={e => setPassword(e.target.value)}
                         />
 
                         <Button
                             type="button"
-                            onClick={handleConfirm}
+                            onClick={HandleLogin}
                         >Entrar</Button>
                     </Form>
                     <Pages to={`${access.toPage}`}>{access.link}</Pages>
@@ -119,45 +144,75 @@ export const Card: React.FC<PropsWithChildren<ICardProps>> = ({
                             placeholder="Nome"
                             type="text"
                             value={name}
-                            onChange={e => onChangeName?.(e.target.value)}
+                            onChange={e => setName(e.target.value)}
                         />
 
                         <Input
                             placeholder="Sobrenome"
                             type="text"
                             value={lastname}
-                            onChange={e => onChangeLastname?.(e.target.value)}
+                            onChange={e => setLastname(e.target.value)}
                         />
 
                         <Input
                             placeholder="Endereço de Email"
                             type="email"
                             value={email}
-                            onChange={e => onChangeEmail?.(e.target.value)}
+                            onChange={e => setEmail(e.target.value)}
                         />
 
                         <Input
                             placeholder="Senha"
                             type="password"
                             value={password}
-                            onChange={e => onChangePassword?.(e.target.value)}
+                            onChange={e => setPassword(e.target.value)}
                         />
 
                         <Input
                             placeholder="Confirmar senha"
                             type="password"
                             value={confirmPassword}
-                            onChange={e => onChangeConfirmPassword?.(e.target.value)}
+                            onChange={e => setConfirmPassword?.(e.target.value)}
                         />
                         <Button
                             type="button"
-                            onClick={handleConfirm}
+                            onClick={RegisterCustumer}
                         >Criar conta</Button>
                     </Form>
                     <Pages to={`${access.toPage}`}>{access.link}</Pages>
                 </Card_Access>
             )
         }
+    }
+
+
+    function SuccessMessage() {
+        toast.success("Cadastro concluído com sucesso!", {
+            position: "top-right",
+            autoClose: 4000,
+            hideProgressBar: false,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: true,
+            progress: undefined,
+            theme: "light",
+            transition: Bounce,
+        });
+    }
+
+    function RejectedMessage(info: string) {
+
+        toast.warning(`${info}`, {
+            position: "top-right",
+            autoClose: 4000,
+            hideProgressBar: false,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: true,
+            progress: undefined,
+            theme: "light",
+            transition: Bounce,
+        });
     }
 
 
@@ -170,7 +225,7 @@ export const Card: React.FC<PropsWithChildren<ICardProps>> = ({
                 </Input_Container>
 
             </Background>
-
+            <ToastContainer />
             <Footer />
         </Container>
     )
@@ -224,6 +279,23 @@ const Card_Access = styled.div<{ $heigth: number }>`
     display: flex;
     flex-direction: column;
 
+    @media(max-width: 700px) {
+        display: flex;
+        justify-content: center;
+        width: 600px   
+    }
+
+    @media(max-width: 600px) {
+        display: flex;
+        justify-content: center;
+        width: 500px   
+    }
+
+    @media(max-width: 500px) {
+        display: flex;
+        justify-content: center;
+        width: 370px   
+    }
 `
 
 const Pages = styled(Link)`
@@ -251,6 +323,10 @@ const Form = styled.form`
     span{
         font-family: overpass;
         color: #cfcfcf;
+
+        @media(max-width: 500px) {
+        text-align: center;
+        }
     }
 `
 
@@ -268,6 +344,10 @@ const Input = styled.input`
     &::placeholder{
         color: #a3a3a3;
         font-weight: bold;
+    }
+
+    @media(max-width: 650px) {
+        width: 300px   
     }
 
 `
@@ -289,6 +369,11 @@ const Button = styled.button`
     &:hover{
         cursor: pointer;
         background-color: #ff9900;
+    }
+
+    
+    @media(max-width: 500px) {
+        margin-right: 50px;
     }
 
 `
