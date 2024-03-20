@@ -6,6 +6,7 @@ import Rosa from "../../../image/Rosa.png"
 import { api } from "../../services/api"
 import { Bounce, ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import axios from "axios"
 
 interface ICardProps {
     TypeOfAccess: boolean
@@ -44,17 +45,33 @@ export const Card: React.FC<PropsWithChildren<ICardProps>> = ({
     }, [TypeOfAccess])
 
 
-    function HandleLogin() {
+    async function HandleLogin() {
 
-        navigate('/menu')
+        await api.get('/customer', {
+            params: {
+                email: email,
+                password: password
+            }
+        })
+            .then(response => {
+                navigate('/menu')
+            })
+            .catch(error => {
+                RejectedMessage(error.response.data.error)
+            })
 
     }
 
 
     async function RegisterCustumer() {
 
-        if (password.localeCompare(confirmPassword) != 0) {
+        if (password.localeCompare(confirmPassword) !== 0) {
             RejectedMessage('As senhas precisam ser iguais!')
+            return
+        }
+
+        if (name.length || lastname.length || email.length || password.length || confirmPassword.length === 0) {
+            RejectedMessage(':)')
             return
         }
 
@@ -199,6 +216,7 @@ export const Card: React.FC<PropsWithChildren<ICardProps>> = ({
             transition: Bounce,
         });
     }
+
 
     function RejectedMessage(info: string) {
 

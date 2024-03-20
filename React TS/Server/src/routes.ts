@@ -1,14 +1,35 @@
-import { FastifyInstance, FastifyPluginOptions, FastifyRequest, FastifyReply } from "fastify";
-import { CreateCustomerController } from "./controllers/CreateCustomerController";
-import { ListCustomerController } from "./controllers/ListCustomerController";
+import Express, { request, response } from 'express'
+import { CreateCustomerController } from './controllers/CreateCustumerController';
+import { ListCustomerController } from './controllers/ListCustomerController';
+import { ListProductController } from './controllers/ListProductController';
 
-export async function routes(fastify: FastifyInstance, options: FastifyPluginOptions) {
 
-    fastify.post("/register", async (request: FastifyRequest, reply: FastifyReply) => {
-        return new CreateCustomerController().handle(request, reply)
-    })
+const router = Express.Router()
 
-    fastify.get("/customer", async (request: FastifyRequest, reply: FastifyReply) => {
-        return new ListCustomerController().handle(request, reply)
-    })
-}
+
+
+
+router.get('/teste', (request, response) => {
+    return console.log(response.send('Entrou no TESTE!'))
+})
+
+
+router.get('/register', async (request, response) => {
+    return await new CreateCustomerController().handle(request, response);
+})
+
+
+router.get('/customer', async (request, response) => {
+    return await new ListCustomerController().handle(request, response);
+})
+
+
+router.get('/product', async (request, response) => {
+    return await new ListProductController().handle(request, response)
+})
+
+
+export { router }
+
+
+

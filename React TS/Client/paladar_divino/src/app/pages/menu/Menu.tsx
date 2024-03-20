@@ -1,13 +1,17 @@
 import styled from "styled-components"
 import { Sidebar } from "./components/Sidebar"
 import { ProductCard } from "./components/ProductCard"
-import { useEffect, useState } from "react"
+import { useContext, useEffect, useState } from "react"
 import banner from '../../../image/Rosa.png'
 import homeBanner from '../../../image/melhor.png'
 import { Footer } from "../../Shared/components/Footer"
+import { LoginContext } from "../../../context"
+
 
 
 export function Menu() {
+
+    const loginContext = useContext(LoginContext)
 
     const [homePage, setHomePage] = useState(false)
     const [productOption, setProductOption] = useState('')
@@ -15,7 +19,7 @@ export function Menu() {
 
     useEffect(() => {
         setHomePage(true)
-    }, []) 
+    }, [])
 
     function CardContent() {
         if (homePage) {
@@ -23,8 +27,9 @@ export function Menu() {
                 <HomeContainer>
                     <HomeBanner />
                     <h2>Promoções</h2>
+                    <h2>{loginContext.customerName}</h2>
                     <HomePromo>
-                        <ProductCard name="Melted" value={'25,00'} img="Hamburguer"/>
+                        <ProductCard name="Melted" value={'25,00'} img="Hamburguer" />
                         <ProductCard name="Melted" value={'25,00'} />
                         <ProductCard name="Melted" value={'25,00'} />
                     </HomePromo>
@@ -76,7 +81,7 @@ export function Menu() {
                     <CardContainer>
                         {CardContent()}
                     </CardContainer>
-                <Footer/>
+                    <Footer />
                 </Page>
             </MenuContainer>
         </MenuPage>
@@ -89,7 +94,7 @@ export function Menu() {
 
 
 const MenuPage = styled.div`
-    height: 1500px;
+    height: 100%;
     background-color: #eeeeee;
 `
 
@@ -109,7 +114,7 @@ const Page = styled.div`
 const Banner = styled.div`
     margin: 30px 0px 30px 0px;
     width: 90vw;
-    height: 700px;
+    height: 400px;
     background-image: url(${banner});
     border-radius: 10px;
     box-shadow: 0px 10px 10px 5px #00000057;
@@ -150,7 +155,7 @@ const CardContainer = styled.div`
     background-color: #ffffff;
     border-radius: 10px;
     box-shadow: 0px 10px 10px 5px #00000057;
-    /* margin-bottom: 40px; */
+    margin-bottom: 40px;
 `
 
 const Cards = styled.div`

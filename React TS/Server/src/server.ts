@@ -1,20 +1,18 @@
-import Fastify from "fastify";
-import cors from '@fastify/cors'
-import { routes } from "./routes";
+import Express from 'express'
+import cors from 'cors'
+import { router } from './routes'
 
-const app = Fastify({ logger: true })
+const app = Express()
 
-
-const start = async () => {
-
-    await app.register(cors)
-    await app.register(routes)
-
-    try {
-        await app.listen({ port: 3333 })
-    } catch(err) {
-        process.exit(1)
-    }
+async function start(){
+    
+    app.use(cors())
+    app.use(router)
+    
+    app.listen(8080, () => {
+        console.log(`O servidor está rodando na porta 8080`)
+    })
 }
+
 
 start()
