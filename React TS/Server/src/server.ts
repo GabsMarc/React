@@ -3,6 +3,7 @@ import cors from 'cors'
 import { router } from './routes'
 
 const app = Express()
+app.use(Express.json())
 
 async function start(){
     

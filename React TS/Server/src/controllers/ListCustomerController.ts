@@ -15,8 +15,7 @@ class ListCustomerController {
         try {
             const listCustomerService = new ListCustomerService()
             const customer = await listCustomerService.searchCustomer(request, response)
-
-            
+         
             response.send(customer)
 
         } catch (error) {

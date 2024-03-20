@@ -1,5 +1,4 @@
-import { Request, Response } from 'express-serve-static-core';
-// import prismaClient from "../prisma";
+import { Request, Response } from 'express';
 import { Prisma, PrismaClient } from '@prisma/client';
 
 const prismaClient = new PrismaClient()

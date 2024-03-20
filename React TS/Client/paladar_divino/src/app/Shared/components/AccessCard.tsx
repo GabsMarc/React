@@ -10,7 +10,7 @@ import axios from "axios"
 
 interface ICardProps {
     TypeOfAccess: boolean
-    propss?: [
+    props?: [
         name: string,
         lastname: string,
         emaildd: string,
@@ -20,7 +20,7 @@ interface ICardProps {
 
 export const Card: React.FC<PropsWithChildren<ICardProps>> = ({
     TypeOfAccess,
-    propss
+    props
 }) => {
 
     const [name, setName] = useState('')
@@ -65,27 +65,18 @@ export const Card: React.FC<PropsWithChildren<ICardProps>> = ({
 
     async function RegisterCustumer() {
 
-        if (password.localeCompare(confirmPassword) !== 0) {
-            RejectedMessage('As senhas precisam ser iguais!')
-            return
-        }
-
-        if (name.length || lastname.length || email.length || password.length || confirmPassword.length === 0) {
-            RejectedMessage(':)')
-            return
-        }
 
         await api.post("/register", {
             name: name,
             lastname: lastname,
             email: email,
-            password: password
-        }).then((cls) => {
+            password: password,
+            confirmPassword: confirmPassword
+        }).then(response => {
             SuccessMessage()
             ClearInput()
-        }).catch((err) => {
-            console.log(err)
-            RejectedMessage('Todos os campos precisam ser preenchidos!')
+        }).catch(error => {
+            RejectedMessage(error.response.data.error)
         })
 
 
