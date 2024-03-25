@@ -31,15 +31,18 @@ export const Sidebar: React.FC<PropsWithChildren<ISidebar>> = ({
                 <Options>
                     <Buttons>
                         <Li onClick={() => onClickHomePage?.(true)}>
-                            <span><FaHome /></span>                      <p>Página inicial</p>
+                            <span><FaHome /></span>
+                            <p>Página inicial</p>
                         </Li>
 
                         <Li onClick={() => onClickOrder?.(true)}>
-                            <span><FaShoppingCart /></span>                      <p>Pedidos</p>
+                            <span><FaShoppingCart /></span>
+                            <p>Pedidos</p>
                         </Li>
 
                         <Li style={{ marginTop: 560 }} onClick={() => Access(true)}>
-                            <span><TbLogout2 /></span>                      <p>Desconectar</p>
+                            <span><TbLogout2 /></span>
+                            <p>Desconectar</p>
                         </Li>
                     </Buttons>
                 </Options>

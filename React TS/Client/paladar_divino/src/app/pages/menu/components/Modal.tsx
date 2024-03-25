@@ -3,9 +3,8 @@ import styled from "styled-components"
 import { IoMdClose } from "react-icons/io";
 import { api } from "../../../services/api";
 import { LoginContext } from "../../../../context";
-import LogoHamburguer from '../../../../image/pixel_hamburguer.png'
+import LogoHamburguer from '../../../../image/Logo/Hamburgueria Divino.png'
 import { MdDeleteOutline } from "react-icons/md";
-import { Bounce, ToastContainer, toast } from 'react-toastify';
 
 
 interface IModalProps {
@@ -79,7 +78,6 @@ export const Modal = ({ open, closeModal }: IModalProps) => {
         }
 
         listOrder()
-        // SuccessMessage('O Pedido foi confirmado e será entregue em sua casa 😊')
     }
 
 
@@ -94,22 +92,6 @@ export const Modal = ({ open, closeModal }: IModalProps) => {
         })
 
         setTotalAmount((quantidade.toFixed(2)).toString())
-    }
-
-
-
-    function SuccessMessage(message: string) {
-        toast.success(message, {
-            position: "top-right",
-            autoClose: 4000,
-            hideProgressBar: false,
-            closeOnClick: true,
-            pauseOnHover: true,
-            draggable: true,
-            progress: undefined,
-            theme: "light",
-            transition: Bounce,
-        });
     }
 
 
@@ -152,7 +134,6 @@ export const Modal = ({ open, closeModal }: IModalProps) => {
                                 <ConfirmOrder onClick={() => { OrderOption(false) }}>
                                     <p>Confimar Pedido</p>
                                 </ConfirmOrder>
-                                <ToastContainer />
                             </B>
                         </Content>
                     </ModalCard>
@@ -290,11 +271,15 @@ const B = styled.div`
     flex-direction: column;
     align-items: center;
     justify-content: space-between;
+
+    h3{
+        font-size: 23px;
+    }
 `
 
 const Logo = styled.img`
+    width: 200px;
     height: 100px;
-    width: 120px;
     margin-top: 10px;
 `
 
