@@ -14,7 +14,7 @@ model customer {
   email    String
   password String
 
-  Request request[]
+  Request order[]
 }
 
 model product {
@@ -24,10 +24,10 @@ model product {
   description String
   value       Float
 
-  Request request[]
+  Request order[]
 }
 
-model request {
+model order {
   id          Int @id @default(autoincrement())
   id_product  Int
   id_custumer Int

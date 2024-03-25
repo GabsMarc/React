@@ -1,20 +1,20 @@
 import { Request, Response } from 'express-serve-static-core';
-import { ListCustomerService } from '../services/ListCustomerService';
+import { LoginCustomerService } from '../services/LoginCustomerService';
 
-class ListCustomerController {
+class LoginCustomerController {
     async handle(request: Request, response: Response) {
 
         const email = request.query.email
         const password = request.query.password
-
+        
 
         if (!email || !password) {
-            return response.status(400).json({ error: 'Todos os campos precisam ser preenchidos!' });
+            response.status(400).json({ error: 'Todos os campos precisam ser preenchidos!' });
         }
 
         try {
-            const listCustomerService = new ListCustomerService()
-            const customer = await listCustomerService.searchCustomer(request, response)
+            const loginCustomerService = new LoginCustomerService()
+            const customer = await loginCustomerService.searchCustomer(request, response)
          
             response.send(customer)
 
@@ -24,4 +24,4 @@ class ListCustomerController {
     }
 }
 
-export { ListCustomerController }
+export { LoginCustomerController }

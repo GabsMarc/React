@@ -3,22 +3,18 @@ import React, { createContext, useState } from "react";
 
 
 interface ILoginContext {
-    customerID: string
-    customerName: string
-    customerLastName: string
+    customerLogin: {}, 
+    setCustomerLogin: React.Dispatch<React.SetStateAction<{}>>
 }
 
 export const LoginContext = createContext<ILoginContext>({} as ILoginContext)
 
 
-export const LoginContextProvider: React.FC<{children: React.ReactNode}> = ({ children }) => {
+export const LoginContextProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
+    const [customerLogin, setCustomerLogin] = useState({})
 
     return (
-        <LoginContext.Provider value={{
-            customerID: 'gabs',
-            customerName: '',
-            customerLastName: ''
-        }}>
+        <LoginContext.Provider value={{ customerLogin, setCustomerLogin }}>
             {children}
         </LoginContext.Provider>
     )

@@ -1,9 +1,8 @@
 import { Request, Response } from 'express';
-import { Prisma, PrismaClient } from '@prisma/client';
+import prismaClient from '../prisma';
+import { Prisma } from '@prisma/client';
 
-const prismaClient = new PrismaClient()
-
-class ListCustomerService {
+class LoginCustomerService {
 
     async searchCustomer(request: Request, response: Response) {
 
@@ -17,13 +16,12 @@ class ListCustomerService {
             })
 
             if (!customerEmail) {
-                return response.status(404).json({ error: 'Não existe um registro com esse email.' });
+                response.status(404).json({ error: 'Não existe um registro com esse email.' });
             }
 
         } catch {
-            return response.status(400).json({ error: 'Erro ao encontrar o cliente' });
+            // response.status(400).json({ error: 'Erro ao encontrar o cliente' });
         }
-
 
 
         try {
@@ -35,20 +33,20 @@ class ListCustomerService {
             })
 
             if (!login) {
-                return response.status(404).json({ error: 'Senha incorreta!' });
+                response.status(404).json({ error: 'Senha incorreta!' });
             }
 
-            return response.send({
+            response.send({
                 id: login.id,
                 name: login.name,
                 lastname: login.lastname
             })
 
-        } catch (error) {
-            return response.status(400).json({ error: 'Erro ao encontrar o cliente' });
+        } catch {
+            
         }
 
     }
 }
 
-export { ListCustomerService }
+export { LoginCustomerService }

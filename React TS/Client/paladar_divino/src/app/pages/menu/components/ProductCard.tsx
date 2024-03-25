@@ -7,13 +7,15 @@ import Salgado from '../../../../image/Salgado.jpg'
 interface IProductCard{
     name?: string,
     value?: string,
-    img?: string
+    img?: string,
+    onClick?(value: boolean): void
 }
 
 export const ProductCard: React.FC<PropsWithChildren<IProductCard>> = ({
     name,
     value,
-    img
+    img,
+    onClick
 }) => {
  
     return (
@@ -27,7 +29,7 @@ export const ProductCard: React.FC<PropsWithChildren<IProductCard>> = ({
                     <p>R${value}</p>
                 </Price>
             </ProductInfo>
-            <ButtonContainner onClick={() => { console.log('clicou') }}>
+            <ButtonContainner onClick={() => onClick?.(true)}>
                 <span>Adicionar</span>
             </ButtonContainner>
         </CardContainer>

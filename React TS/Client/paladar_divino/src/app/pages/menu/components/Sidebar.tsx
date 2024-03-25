@@ -8,11 +8,13 @@ import React, { PropsWithChildren } from "react";
 
 interface ISidebar {
     onClickHomePage?: (value: boolean) => void
+    onClickOrder?: (value: boolean) => void
 }
 
 
 export const Sidebar: React.FC<PropsWithChildren<ISidebar>> = ({
-    onClickHomePage
+    onClickHomePage,
+    onClickOrder
 }) => {
 
     const navigate = useNavigate()
@@ -32,7 +34,7 @@ export const Sidebar: React.FC<PropsWithChildren<ISidebar>> = ({
                             <span><FaHome /></span>                      <p>Página inicial</p>
                         </Li>
 
-                        <Li>
+                        <Li onClick={() => onClickOrder?.(true)}>
                             <span><FaShoppingCart /></span>                      <p>Pedidos</p>
                         </Li>
 

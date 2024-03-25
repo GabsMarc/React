@@ -1,4 +1,4 @@
-import { Request, Response } from 'express-serve-static-core';
+import { Request, Response } from 'express';
 import { ListProductService } from '../services/ListProductService';
 
 class ListProductController {
@@ -6,7 +6,7 @@ class ListProductController {
 
         try {
             const listProductService = new ListProductService()
-            const product = await listProductService.execute()
+            const product = await listProductService.execute(request, response)
 
             response.send(product)
 

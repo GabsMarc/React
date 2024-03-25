@@ -6,20 +6,59 @@ import banner from '../../../image/Rosa.png'
 import homeBanner from '../../../image/melhor.png'
 import { Footer } from "../../Shared/components/Footer"
 import { LoginContext } from "../../../context"
+import { api } from "../../services/api"
+import { Modal } from "./components/Modal"
+import { Bounce, ToastContainer, toast } from 'react-toastify';
 
 
 
 export function Menu() {
 
-    const loginContext = useContext(LoginContext)
+    const { customerLogin, setCustomerLogin } = useContext(LoginContext)
+    const customerName = `${Object(customerLogin).name} ${Object(customerLogin).lastname}`
+
 
     const [homePage, setHomePage] = useState(false)
     const [productOption, setProductOption] = useState('')
-
+    const [productCard, setProductCard] = useState([])
+    const [openModal, setOpenModal] = useState(false)
 
     useEffect(() => {
         setHomePage(true)
     }, [])
+
+
+    async function getProduct(type: string) {
+
+        await api.get('/product', {
+            params: {
+                type: type
+            }
+        }).then((response) => {
+            setProductCard(response.data)
+        })
+
+
+        console.log(productCard)
+
+        ProductOption(type)
+    }
+
+
+    async function addOrder(idProduct: number) {
+
+        const customer = Object(customerLogin).id
+
+        await api.post('/order', {
+            idProduct: idProduct.toString(),
+            idCustomer: customer.toString()
+        }).then((response) => {
+            SuccessMessage(`${response.data.message} foi adicionado(a) no carrinho.`)
+        })
+
+
+    }
+
 
     function CardContent() {
         if (homePage) {
@@ -27,9 +66,8 @@ export function Menu() {
                 <HomeContainer>
                     <HomeBanner />
                     <h2>Promoções</h2>
-                    <h2>{loginContext.customerName}</h2>
                     <HomePromo>
-                        <ProductCard name="Melted" value={'25,00'} img="Hamburguer" />
+                        <ProductCard name="Melted" value={'25,00'} />
                         <ProductCard name="Melted" value={'25,00'} />
                         <ProductCard name="Melted" value={'25,00'} />
                     </HomePromo>
@@ -47,14 +85,32 @@ export function Menu() {
 
     function CardOption() {
         switch (productOption) {
-            case 'S':
-                return <ProductCard name="Salgado" value={'27,90'} />
+            case 'L':
+                return (productCard.map((product: any) => {
+                    return <ProductCard
+                        key={product.id}
+                        name={product.product}
+                        value={product.value}
+                        onClick={() => { addOrder(product.id) }} />
+                }))
                 break;
             case 'B':
-                return <ProductCard name="Bebida" value={'27,90'} />
+                return (productCard.map((product: any) => {
+                    return <ProductCard
+                        key={product.id}
+                        name={product.product}
+                        value={product.value}
+                        onClick={() => { addOrder(product.id) }} />
+                }))
                 break;
             case 'H':
-                return <ProductCard name="Hamburguer" value={'27,90'} />
+                return (productCard.map((product: any) => {
+                    return <ProductCard
+                        key={product.id}
+                        name={product.product}
+                        value={product.value}
+                        onClick={() => { addOrder(product.id) }} />
+                }))
                 break;
         }
     }
@@ -66,23 +122,48 @@ export function Menu() {
     }
 
 
+    function SuccessMessage(message: string) {
+        toast.success(message, {
+            position: "top-right",
+            autoClose: 4000,
+            hideProgressBar: false,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: true,
+            progress: undefined,
+            theme: "light",
+            transition: Bounce,
+        });
+    }
 
     return (
         <MenuPage>
-            <Sidebar onClickHomePage={setHomePage} />
+            <Modal
+                open={openModal}
+                closeModal={(value) => { setOpenModal(value)}}
+            />
+            <Sidebar
+                onClickHomePage={setHomePage}
+                onClickOrder={(value) => { setOpenModal(value) }} />
             <MenuContainer>
                 <Page>
+                    <Customer>
+                        <h1>
+                            {`Bem vindo(a) ${customerName}`}
+                        </h1>
+                    </Customer>
                     <Banner />
                     <Options>
-                        <span onClick={() => ProductOption('S')}>Salgados</span>
-                        <span onClick={() => ProductOption('H')}>Hamburguers</span>
-                        <span onClick={() => ProductOption('B')}>Bebidas</span>
+                        <span onClick={() => getProduct('L')}>Salgados</span>
+                        <span onClick={() => getProduct('H')}>Hamburguers</span>
+                        <span onClick={() => getProduct('B')}>Bebidas</span>
                     </Options>
                     <CardContainer>
                         {CardContent()}
                     </CardContainer>
                     <Footer />
                 </Page>
+                <ToastContainer />
             </MenuContainer>
         </MenuPage>
     )
@@ -108,6 +189,23 @@ const Page = styled.div`
     display: flex;
     flex-direction: column;
     padding-left: 130px;
+
+`
+
+const Customer = styled.div`
+    display: flex;
+    justify-content: center;
+    font-family: overpass;
+    margin: 20px 0px 0px 0px;
+    
+    h1 {
+        background-color: #F74D85;
+        color: #FFF;
+        border-radius: 10px;
+        padding: 10px;
+        font-size: 30px;
+        box-shadow: 5px 5px 5px 5px #00000057;
+    }
 
 `
 

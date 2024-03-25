@@ -1,4 +1,4 @@
-import React, { useEffect, useState, PropsWithChildren } from "react"
+import React, { useEffect, useState, PropsWithChildren, useContext } from "react"
 import styled from "styled-components"
 import { Footer } from "./Footer"
 import { Link, useNavigate } from "react-router-dom"
@@ -6,31 +6,26 @@ import Rosa from "../../../image/Rosa.png"
 import { api } from "../../services/api"
 import { Bounce, ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-import axios from "axios"
+import { LoginContext } from "../../../context"
 
 interface ICardProps {
     TypeOfAccess: boolean
-    props?: [
-        name: string,
-        lastname: string,
-        emaildd: string,
-    ]
 }
+
+
 
 
 export const Card: React.FC<PropsWithChildren<ICardProps>> = ({
     TypeOfAccess,
-    props
 }) => {
-
+    
+    
+    const navigate = useNavigate()
     const [name, setName] = useState('')
     const [lastname, setLastname] = useState('')
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
     const [confirmPassword, setConfirmPassword] = useState('')
-    const [registerComplete, setRegisterComplete] = useState(false)
-
-    const navigate = useNavigate()
     const [access, setAccess] = useState({
         title: '',
         obs: '',
@@ -38,6 +33,8 @@ export const Card: React.FC<PropsWithChildren<ICardProps>> = ({
         toPage: '',
     }
     );
+
+    const { customerLogin, setCustomerLogin } = useContext(LoginContext)
 
 
     useEffect(() => {
@@ -47,7 +44,7 @@ export const Card: React.FC<PropsWithChildren<ICardProps>> = ({
 
     async function HandleLogin() {
 
-        await api.get('/customer', {
+        await api.get('/login', {
             params: {
                 email: email,
                 password: password
@@ -55,6 +52,9 @@ export const Card: React.FC<PropsWithChildren<ICardProps>> = ({
         })
             .then(response => {
                 navigate('/menu')
+
+                setCustomerLogin(response.data)
+                console.log(customerLogin)
             })
             .catch(error => {
                 RejectedMessage(error.response.data.error)
@@ -75,6 +75,10 @@ export const Card: React.FC<PropsWithChildren<ICardProps>> = ({
         }).then(response => {
             SuccessMessage()
             ClearInput()
+            setTimeout(() => {
+                
+                navigate('/login')
+            }, 2000);
         }).catch(error => {
             RejectedMessage(error.response.data.error)
         })
